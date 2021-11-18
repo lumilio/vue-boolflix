@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid d-flex justify-content-center">
-        <div class="container d-flex">
+        <div class="container d-flex justify-content-center align-items-center">
             <Logo1/>
             <SearchBox/>
         </div>
@@ -43,6 +43,11 @@ export default {
 .container-fluid{
     background-color: black;
     color: white;
-    padding: 20px 0;
+    padding: 43px 0;
+    position: sticky;
+    top: 0;
+}
+.container{
+    position: relative;
 }
 </style>

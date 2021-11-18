@@ -1,5 +1,5 @@
 <template>
-    <div>xxx</div>
+    <img src="../assets/img/pic1.png" alt="">
 </template>
 
 /* -------------------------------------------------------------------------- */
@@ -30,5 +30,10 @@ export default {
 
 <style scoped lang="scss">
 @import '../assets/scss/variables.scss';
+img{
+    width: 200px;
+    position: absolute;
+    left: 0;
+}
 
 </style>

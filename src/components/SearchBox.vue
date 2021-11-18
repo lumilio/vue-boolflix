@@ -1,5 +1,5 @@
 <template>
-    <div class="m-auto">
+    <div class="">
         <input type="text">
         <button >click to filter</button>
         <div>
