@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid d-flex justify-content-center">
         <div class="container">
-             <div v-for='element in List' :key='element.id'>
+             <div v-for='element in CardList' :key='element.id'>
                 <p>{{element.title}}</p>
                 <p>{{element.original_title}}</p>
                 <p>{{element.original_language}}</p>
@@ -28,11 +28,17 @@ export default {
     name: '',
     components: {},
     props: {},
-/*  data() {},
-    methods: {},
-    computed: {},
-    mounted() {}, */
-}
+    data() {
+        return {
+            CardList:[],
+        };
+    },
+    created (){
+        Bus1.$on('xxx', (data) => {this.CardList = data;})
+        console.log(this.CardList);
+    }
+    
+} 
 </script>
 
 /* -------------------------------------------------------------------------- */
