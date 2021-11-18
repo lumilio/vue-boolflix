@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <HeaderBanner/>
-      <SearchBox/>
+      <CardBox/>
 
 
 
@@ -28,14 +28,14 @@ import "bootstrap"
 //--------------------------------------------
 //---------------components-------------------
 import HeaderBanner from './components/HeaderBanner.vue';
-import SearchBox from './components/SearchBox.vue';
+import CardBox from './components/CardBox.vue';
 //--------------------------------------------
 
 export default {
     name: 'App',
     components: {
         HeaderBanner,
-        SearchBox,
+        CardBox,
     },
     data() {
         return {

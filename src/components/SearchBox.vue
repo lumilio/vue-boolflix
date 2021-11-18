@@ -1,7 +1,14 @@
 <template>
-    <div class="container-fluid d-flex justify-content-center">
-        <div class="container">
-            xxx xxx xxx
+    <div class="m-auto">
+        <input type="text">
+        <button >click to filter</button>
+        <div>
+            <div>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
         </div>
     </div>
 </template>

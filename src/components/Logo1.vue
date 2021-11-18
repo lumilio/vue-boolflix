@@ -1,8 +1,5 @@
 <template>
-    <div class="container-fluid d-flex justify-content-center">
-        <div class="container">
-        </div>
-    </div>
+    <div>xxx</div>
 </template>
 
 /* -------------------------------------------------------------------------- */
