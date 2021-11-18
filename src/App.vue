@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+      <HeaderBanner/>
+      <SearchBox/>
+
+
+
+
+
       <input v-model="InputSearch" type="text">
       <button @click="Research()">click to filter</button>
       <div>
@@ -20,12 +27,16 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 //--------------------------------------------
 //---------------components-------------------
-
+import HeaderBanner from './components/HeaderBanner.vue';
+import SearchBox from './components/SearchBox.vue';
 //--------------------------------------------
 
 export default {
     name: 'App',
-    components: {},
+    components: {
+        HeaderBanner,
+        SearchBox,
+    },
     data() {
         return {
             InputSearch:'',
@@ -50,4 +61,5 @@ export default {
 
 
 <style lang="scss">
+@import './assets/scss/variables.scss';
 </style>

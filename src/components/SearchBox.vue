@@ -1,6 +1,7 @@
 <template>
     <div class="container-fluid d-flex justify-content-center">
         <div class="container">
+            xxx xxx xxx
         </div>
     </div>
 </template>
@@ -9,8 +10,8 @@
 
 <script>
 //-----------------utilities--------------------
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 //--------------------------------------------
 //---------------components-------------------
 // none
@@ -32,4 +33,6 @@ export default {
 /* -------------------------------------------------------------------------- */
 
 <style scoped lang="scss">
+@import '../assets/scss/variables.scss';
+
 </style>

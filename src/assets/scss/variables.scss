@@ -1,0 +1,16 @@
+*{ margin: 0; padding: 0; box-sizing: border-box;}
+
+$sie-color-1: #1e2d3b;
+$sie-color-2: #2e3a46;
+$sie-color-3: #777c7f;
+
+
+@mixin layout-input-1 {
+    width: 250px;
+    margin: 5px;
+    margin-left: 30px;
+}
+
+
+
+
