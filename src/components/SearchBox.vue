@@ -39,6 +39,7 @@ export default {
 
             axios(config).then(response => {
                 this.List = response.data.results;
+                console.log(response.data);
                 Bus1.$emit('send-special', this.List); 
             })
             .catch(function(error){console.log(error);});
@@ -52,6 +53,4 @@ export default {
 
 <style scoped lang="scss">
 @import '../assets/scss/variables.scss';
-
-
 </style>

@@ -43,7 +43,6 @@ export default {
 
 <style scoped lang="scss">
 @import '../assets/scss/variables.scss';
-
 body{
     overflow-y: auto;
 }
@@ -57,5 +56,4 @@ body{
     border: 1px solid black;
     margin: 10px 20px;
 }
-
 </style>

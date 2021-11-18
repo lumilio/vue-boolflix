@@ -39,9 +39,6 @@ export default {
 
 <style scoped lang="scss">
 @import '../assets/scss/variables.scss';
-
-
-
 .container-fluid{
     background-color: black;
     color: white;
@@ -49,7 +46,6 @@ export default {
     position: sticky;
     top: 0;
 }
-
 .container{
     position: relative;
 }
