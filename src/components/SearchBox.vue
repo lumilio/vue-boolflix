@@ -36,8 +36,13 @@ export default {
                 url: 'https://api.themoviedb.org/3/search/movie?api_key=aa241e36a559a2927e235d5e8f93f3b5&query='+`${this.InputSearch}`,
                 headers: { }
             };
-            axios(config).then(response => {this.List = response.data.results; console.log(this.List); }).catch(function(error){console.log(error);});
-            Bus1.$emit('xxx', this.List);
+
+            axios(config).then(response => {
+                this.List = response.data.results;
+                Bus1.$emit('send-special', this.List); 
+            })
+            .catch(function(error){console.log(error);});
+            
         }
     }, 
 }   
