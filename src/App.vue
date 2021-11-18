@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <input type="text">
+      <input v-model="InputSearch" type="text">
       <button @click="Research()">click to filter</button>
       <div>
           <div v-for='element in List' :key='element.id'>
@@ -28,7 +28,7 @@ export default {
     components: {},
     data() {
         return {
-            InputSearch:'ciao',
+            InputSearch:'',
             List:[],
         };
     },
