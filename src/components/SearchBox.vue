@@ -53,4 +53,5 @@ export default {
 <style scoped lang="scss">
 @import '../assets/scss/variables.scss';
 
+
 </style>
