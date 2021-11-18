@@ -31,7 +31,4 @@ export default {
 
 <style lang="scss">
 @import './assets/scss/variables.scss';
-body{
-    overflow-y: hidden;
-}
 </style>

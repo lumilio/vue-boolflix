@@ -1,13 +1,14 @@
 <template>
     <div class="container-fluid d-flex justify-content-center ">
         <div class="container d-flex flex-wrap justify-content-center">
-             <div v-for='(element, index) in CardList' :key='index' class="film-box  col-xl-6 col-lg-3 col-md-4 col-12">
+             <div v-for='(element, index) in CardList' :key='index' class="film-box  col-xl-2 col-lg-3 col-md-4 col-12">
                 <p>{{element.title}}</p>
                 <p>{{element.original_title}}</p>
                 <p>{{element.original_language}}</p>
                 <p>{{element.vote_average}}</p>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -43,11 +44,12 @@ export default {
 <style scoped lang="scss">
 @import '../assets/scss/variables.scss';
 
-
-
+body{
+    overflow-y: auto;
+}
 .container-fluid{
     padding-top: 40px;
-    height: calc(100vh - 120px);
+    padding-bottom: 110px;
 
 }
 .film-box{
