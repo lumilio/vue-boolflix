@@ -30,20 +30,35 @@ export default {
         };
     },
     methods:{
-        Research(){
-            const axios = require('axios');
-            const config = {
-                method: 'get',
-                url: 'https://api.themoviedb.org/3/search/movie?api_key=aa241e36a559a2927e235d5e8f93f3b5' + '&page=' + `${this.PageActive}` + '&query=' + `${this.InputSearch}` ,
-                headers: { }
-            };
 
-            axios(config).then(response => {
-                this.List = response.data.results;
-                Bus1.$emit('send-special', this.List); 
-            })
+        ArreyCreator(x){
+            for (let i = 0; i < x.length; i++) {
+                const element = x[i];
+                this.List.push(element)
+            }
+        },
+
+        Research(){
+
+            this.List = [];
+
+            const axios = require('axios');
+            let movie_url = 'https://api.themoviedb.org/3/search/movie?api_key=aa241e36a559a2927e235d5e8f93f3b5&query=' + `${this.InputSearch}`;
+            let tv_url = 'https://api.themoviedb.org/3/search/tv?api_key=aa241e36a559a2927e235d5e8f93f3b5&query=' + `${this.InputSearch}`;
+            const request_movie = axios.get(movie_url);
+            const request_tv = axios.get(tv_url);
+
+            axios
+            .all([request_movie, request_tv]).then(axios.spread((...responses) => {
+                const response_movie = responses[0]
+                const response_tv = responses[1]
+                this.ArreyCreator(response_movie.data.results);
+                this.ArreyCreator(response_tv.data.results);
+                Bus1.$emit('send-special', this.List);
+                console.log(this.List); 
+            }))
             .catch(function(error){console.log(error);});
-            
+
         }
     }, 
 }   

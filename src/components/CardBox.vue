@@ -2,10 +2,21 @@
     <div class="container-fluid d-flex justify-content-center ">
         <div class="container d-flex flex-wrap justify-content-center">
              <div v-for='(element, index) in CardList' :key='index' class="film-box  col-xl-2 col-lg-3 col-md-4 col-12">
-                <p>{{element.title}}</p>
-                <p>{{element.original_title}}</p>
-                <p>{{element.original_language.toUpperCase()}}</p>
-                <p>{{element.vote_average}}</p>
+                 <div v-if='element.title != undefined'>
+                    <p>{{element.title}}</p>
+                    <p>{{element.original_title}}</p>
+                    <p>{{element.original_language.toUpperCase()}}</p>
+                    <p>{{element.vote_average}}</p>
+                    <p>Film</p>
+                 </div>
+                 <div v-else>
+                    <p>{{element.name}}</p>
+                    <p>{{element.original_name}}</p>
+                    <p>{{element.original_language.toUpperCase()}}</p>
+                    <p>{{element.vote_average}}</p>
+                    <p>Serie Tv</p>
+                 </div>
+
             </div>
         </div>
         
@@ -35,6 +46,7 @@ export default {
     },
     created(){
         Bus1.$on('send-special', (data) => {this.CardList = data;})
+        console.log();
     }
 } 
 </script>
