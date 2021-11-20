@@ -6,7 +6,9 @@
                  <div v-if='element.title != undefined'>
                     <p>{{element.title}}</p>
                     <p>{{element.original_title}}</p>
-                    <div v-if="verifyLanguage(element.original_language.toUpperCase())"><img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt=""></div>
+                    <div v-if="verifyLanguage(element.original_language.toUpperCase())">
+                        <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
+                    </div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
                     <p>{{element.vote_average}}</p>
                     <p>Film</p>
@@ -15,7 +17,9 @@
                  <div v-else>
                     <p>{{element.name}}</p>
                     <p>{{element.original_name}}</p>
-                    <div v-if="verifyLanguage(element.original_language.toUpperCase())"><img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt=""></div>
+                    <div v-if="verifyLanguage(element.original_language.toUpperCase())">
+                        <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
+                    </div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
                     <p>{{element.vote_average}}</p>
                     <p>Serie Tv</p>
