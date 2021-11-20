@@ -3,33 +3,19 @@
         <div class="container d-flex flex-wrap justify-content-center">
              <div v-for='(element, index) in CardList' :key='index' class="film-box  col-xl-2 col-lg-3 col-md-4 col-12">
 
-                 
                  <div v-if='element.title != undefined'>
                     <p>{{element.title}}</p>
                     <p>{{element.original_title}}</p>
-                    <div v-if="element.original_language.toUpperCase() == 'IT' || 
-                            element.original_language.toUpperCase() == 'EN' ||
-                            element.original_language.toUpperCase() == 'ES' ||
-                            element.original_language.toUpperCase() == 'FR' ||
-                            element.original_language.toUpperCase() == 'DE'">
-                        <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
-                    </div>
+                    <div v-if="verifyLanguage(element.original_language.toUpperCase())"><img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt=""></div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
                     <p>{{element.vote_average}}</p>
                     <p>Film</p>
                  </div>
 
-
                  <div v-else>
                     <p>{{element.name}}</p>
                     <p>{{element.original_name}}</p>
-                    <div v-if="element.original_language.toUpperCase() == 'IT' || 
-                            element.original_language.toUpperCase() == 'EN' ||
-                            element.original_language.toUpperCase() == 'ES' ||
-                            element.original_language.toUpperCase() == 'FR' ||
-                            element.original_language.toUpperCase() == 'DE'">
-                        <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
-                    </div>
+                    <div v-if="verifyLanguage(element.original_language.toUpperCase())"><img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt=""></div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
                     <p>{{element.vote_average}}</p>
                     <p>Serie Tv</p>
@@ -61,6 +47,12 @@ export default {
         return {
             CardList:[],
         };
+    },
+    methods:{
+        verifyLanguage(x){
+            if(x == 'EN' || x == 'IT' || x == 'ES' || x == 'DE' || x == 'FR'){return true}
+            else{return false}
+        }
     },
     created(){
         Bus1.$on('send-special', (data) => {this.CardList = data;})

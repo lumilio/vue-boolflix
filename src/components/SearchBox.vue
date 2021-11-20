@@ -38,7 +38,7 @@ export default {
             }
         },
 
-        Research(){
+        async Research(){
 
             this.List = [];
 
