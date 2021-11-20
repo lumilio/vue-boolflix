@@ -15,6 +15,7 @@ import "bootstrap"
 //---------------components-------------------
 import { Bus1 } from '../main'
 import { Bus2 } from '../main'
+
 //--------------------------------------------
 
 
@@ -41,8 +42,8 @@ export default {
 
         Research(){
 
-
             Bus2.$emit('send-special2', this.InputSearch);
+            Bus2.$emit('send-special2', this.PageActive);
 
             this.List = [];
 
@@ -58,8 +59,7 @@ export default {
                 const response_tv = responses[1]
                 this.ArreyCreator(response_movie.data.results);
                 this.ArreyCreator(response_tv.data.results);
-                Bus1.$emit('send-special', this.List);
-                console.log(this.List); 
+                Bus1.$emit('send-special1', this.List);
             }))
             .catch(function(error){console.log(error);});
 
