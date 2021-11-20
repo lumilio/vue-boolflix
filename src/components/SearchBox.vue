@@ -25,6 +25,7 @@ export default {
     data() {
         return {
             InputSearch:'',
+            PageActive:1,
             List:[],
         };
     },
@@ -33,13 +34,12 @@ export default {
             const axios = require('axios');
             const config = {
                 method: 'get',
-                url: 'https://api.themoviedb.org/3/search/movie?api_key=aa241e36a559a2927e235d5e8f93f3b5&query='+`${this.InputSearch}`,
+                url: 'https://api.themoviedb.org/3/search/movie?api_key=aa241e36a559a2927e235d5e8f93f3b5' + '&page=' + `${this.PageActive}` + '&query=' + `${this.InputSearch}` ,
                 headers: { }
             };
 
             axios(config).then(response => {
                 this.List = response.data.results;
-                console.log(response.data);
                 Bus1.$emit('send-special', this.List); 
             })
             .catch(function(error){console.log(error);});

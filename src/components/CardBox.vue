@@ -4,7 +4,7 @@
              <div v-for='(element, index) in CardList' :key='index' class="film-box  col-xl-2 col-lg-3 col-md-4 col-12">
                 <p>{{element.title}}</p>
                 <p>{{element.original_title}}</p>
-                <p>{{element.original_language}}</p>
+                <p>{{element.original_language.toUpperCase()}}</p>
                 <p>{{element.vote_average}}</p>
             </div>
         </div>
