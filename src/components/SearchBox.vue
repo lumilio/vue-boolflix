@@ -14,6 +14,7 @@ import "bootstrap"
 //--------------------------------------------
 //---------------components-------------------
 import { Bus1 } from '../main'
+import { Bus2 } from '../main'
 //--------------------------------------------
 
 
@@ -38,7 +39,10 @@ export default {
             }
         },
 
-        async Research(){
+        Research(){
+
+
+            Bus2.$emit('send-special2', this.InputSearch);
 
             this.List = [];
 

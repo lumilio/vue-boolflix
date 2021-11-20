@@ -40,6 +40,8 @@ import "bootstrap"
 //--------------------------------------------
 //---------------components-------------------
 import { Bus1 } from '../main'
+import { Bus2 } from '../main'
+import { Bus3 } from '../main'
 //--------------------------------------------
 
 
@@ -50,6 +52,9 @@ export default {
     data() {
         return {
             CardList:[],
+
+            PageSelected:1,
+            InputSelected:'',
         };
     },
     methods:{
@@ -60,7 +65,9 @@ export default {
     },
     created(){
         Bus1.$on('send-special', (data) => {this.CardList = data;})
-        console.log();
+
+        Bus2.$on('send-special2', (data) => {this.InputSelected = data;})
+        Bus3.$on('send-special3', (data) => {this.PageSelected = data;})
     }
 } 
 </script>

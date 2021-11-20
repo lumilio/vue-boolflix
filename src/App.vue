@@ -2,6 +2,7 @@
     <div id="app">
         <HeaderBanner/>
         <CardBox/>
+        <ArrowBox/>
     </div>
 
 </template>
@@ -15,6 +16,7 @@ import "bootstrap"
 //---------------components-------------------
 import HeaderBanner from './components/HeaderBanner.vue';
 import CardBox from './components/CardBox.vue';
+import ArrowBox from './components/ArrowBox.vue';
 //--------------------------------------------
 
 export default {
@@ -22,6 +24,7 @@ export default {
     components: {
         HeaderBanner,
         CardBox,
+        ArrowBox,
     },
 }    
 </script>
