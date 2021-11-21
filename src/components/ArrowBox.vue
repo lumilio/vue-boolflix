@@ -78,6 +78,7 @@ export default {
 
     created(){
         Bus2.$on('send-data', (data) => {this.InputPage = data;});
+        Bus2.$on('send-data-2', (data) => {this.PageCounter = data;});
     }
 }
 </script>

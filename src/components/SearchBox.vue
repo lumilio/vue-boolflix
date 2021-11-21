@@ -43,7 +43,7 @@ export default {
         Research(){
 
             Bus2.$emit('send-data', this.InputSearch);
-            Bus2.$emit('send-data', this.PageActive);
+            Bus2.$emit('send-data-2', this.PageActive);
             this.List = [];
 
             const axios = require('axios');
