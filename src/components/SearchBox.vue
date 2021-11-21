@@ -15,7 +15,6 @@ import "bootstrap"
 //---------------components-------------------
 import { Bus1 } from '../main'
 import { Bus2 } from '../main'
-
 //--------------------------------------------
 
 
