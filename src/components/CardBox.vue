@@ -1,42 +1,32 @@
 <template>
     <div class="container-fluid d-flex justify-content-center ">
         <div class="container d-flex flex-wrap justify-content-center">
-             <div v-for='(element, index) in CardList' :key='index' class="film-box  ">
 
-                 <div v-if='element.title != undefined'>
-                    <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="">
+
+             <div v-for='(element, index) in CardList' :key='index' class="film-box  ">
+                <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="">
+                <div v-if='element.name == undefined'>
                     <p>{{element.title}}</p>
                     <p>{{element.original_title}}</p>
-                    <div v-if="verifyLanguage(element.original_language.toUpperCase())">
-                        <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
-                    </div>
-                    <p v-else >{{element.original_language.toUpperCase()}}</p>
-                    <p class="vote-container d-flex">
-                        <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
-                        <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
-                    </p>
-                    <p>Film</p>
-                 </div>
-
-
-                 <div v-else>
-                    <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="">
+                </div>
+                <div v-else>
                     <p>{{element.name}}</p>
                     <p>{{element.original_name}}</p>
-                    <div v-if="verifyLanguage(element.original_language.toUpperCase())">
-                        <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
-                    </div>
-                    <p v-else >{{element.original_language.toUpperCase()}}</p>
-                    <p class="vote-container d-flex">
-                        <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
-                        <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
-                    </p>
-                    <p>Serie Tv</p>
-                 </div>
-
+                </div>
+                <div v-if="verifyLanguage(element.original_language.toUpperCase())">
+                    <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
+                </div>
+                <p v-else >{{element.original_language.toUpperCase()}}</p>
+                <p class="vote-container d-flex">
+                    <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
+                    <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
+                </p>
+                <p v-if='element.name == undefined' >Film</p>
+                <p v-else >Serie Tv</p>
             </div>
+
+            
         </div>
-        
     </div>
 </template>
 
