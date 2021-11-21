@@ -10,9 +10,13 @@
                         <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
                     </div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
-                    <p>{{element.vote_average}}</p>
+                    <p>
+                        <i v-for="star in Math.round(element.vote_average/2)" :key="star.id" class="fas fa-star"></i>
+                        <i v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" class="far fa-star"></i>
+                    </p>
                     <p>Film</p>
                  </div>
+
 
                  <div v-else>
                     <p>{{element.name}}</p>
@@ -21,7 +25,10 @@
                         <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
                     </div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
-                    <p>{{element.vote_average}}</p>
+                    <p>
+                        <i v-for="star in Math.round(element.vote_average/2)" :key="star.id" class="fas fa-star"></i>
+                        <i v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" class="far fa-star"></i>
+                    </p>
                     <p>Serie Tv</p>
                  </div>
 
@@ -37,6 +44,8 @@
 //-----------------utilities--------------------
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 //--------------------------------------------
 //---------------components-------------------
 import { Bus1 } from '../main'
@@ -60,7 +69,8 @@ export default {
         verifyLanguage(x){
             if(x == 'EN' || x == 'IT' || x == 'ES' || x == 'DE' || x == 'FR'){return true}
             else{return false}
-        }
+        },
+
     },
     created(){
         Bus1.$on('send-data', (data) => {this.CardList = data;})
@@ -80,6 +90,9 @@ body{
     padding-top: 40px;
     padding-bottom: 110px;
 
+}
+i{
+    width: 20px;
 }
 .film-box{
     padding: 10px 20px;

@@ -7,6 +7,8 @@ export const Bus3 = new Vue(); /* data from ArrowBox to CardBox */
 
 
 
+
+
 Vue.config.productionTip = false
 
 new Vue({
