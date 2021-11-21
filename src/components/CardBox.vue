@@ -54,6 +54,7 @@ export default {
     data() {
         return {
             CardList:[],
+            GenersList:[],
             PageSelected:1,
             InputSelected:'',
         };
@@ -68,6 +69,17 @@ export default {
     created(){
         Bus1.$on('send-data', (data) => {this.CardList = data;})
         Bus3.$on('send-data', (data) => {this.CardList = data;})
+    },
+    mounted(){
+        const axios = require('axios');
+        const config = {
+            method: 'get',
+            url: 'https://api.themoviedb.org/3/genre/movie/list?api_key=aa241e36a559a2927e235d5e8f93f3b5&query=i',
+            headers: { }
+        };
+        axios(config)
+        .then(response => {this.GenersList = response.data.genres; console.log(this.GenersList);})
+        .catch(function (error) {console.log(error);});
     }
 } 
 </script>
