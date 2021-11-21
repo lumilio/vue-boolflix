@@ -1,8 +1,8 @@
 <template>
     <div class="container-fluid d-flex justify-content-center">
-        <div class="container d-flex justify-content-center align-items-center">
+        <div class="container d-flex justify-content-center align-items-center m-3">
             <button @click="PreviusPage">Previus</button>
-            <p>{{PageCounter}}</p>
+            <p  class='mx-2'>Pagina {{PageCounter}}</p>
             <button @click="NextPage">Next</button>
         </div>
     </div>

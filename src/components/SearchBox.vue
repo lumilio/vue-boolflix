@@ -1,7 +1,7 @@
 <template>
     <div class="">
-      <input v-model="InputSearch" type="text">
-      <button @click="Research()">click to filter</button>
+      <input  @keyup.enter="Research()" v-model="InputSearch" type="text">
+      <button @click="Research()" @keyup.enter="Research()">click to filter</button>
     </div>
 </template>
 
@@ -68,4 +68,6 @@ export default {
 
 <style scoped lang="scss">
 @import '../assets/scss/variables.scss';
+
+
 </style>

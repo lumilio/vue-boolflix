@@ -81,7 +81,7 @@ body{
 }
 .container-fluid{
     padding-top: 40px;
-    padding-bottom: 110px;
+    padding-bottom: 70px;
 
 }
 .vote-container img{
@@ -91,7 +91,7 @@ body{
     border: 1px solid black;
     margin: 10px 20px;
     min-width: 342px;
-    min-height: 400px;
+    min-height: 500px;
     position: relative;
     background-color: black;
 }
