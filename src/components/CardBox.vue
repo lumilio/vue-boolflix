@@ -3,29 +3,32 @@
         <div class="container d-flex flex-wrap justify-content-center">
 
 
-             <div v-for='(element, index) in CardList' :key='index' class="film-box  ">
-                <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="">
-                <div v-if='element.name == undefined'>
-                    <p>{{element.title}}</p>
-                    <p>{{element.original_title}}</p>
+             <div v-for='(element, index) in CardList' :key='index' class="card-box">
+                <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="" class="card-image">
+                <div class="card-data">
+                    <div v-if='element.name == undefined'>
+                        <p><b>Titolo: </b> "{{element.title}}"</p>
+                        <p><b>Titolo originale: </b>  "{{element.original_title}}"</p>
+                    </div>
+                    <div v-else>
+                        <p><b>Titolo: </b> "{{element.name}}"</p>
+                        <p><b>Titolo originale: </b>  "{{element.original_name}}"</p>
+                    </div>
+                    <div v-if="verifyLanguage(element.original_language.toUpperCase())" class="my-3">
+                        <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
+                    </div>
+                    <p v-else >{{element.original_language.toUpperCase()}}</p>
+                    <div class="vote-container d-flex">
+                        <p><b>Voto:&nbsp; </b></p>
+                        <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
+                        <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
+                    </div>
+                    <p v-if='element.name == undefined' ><b>Categoria:</b> Film</p>
+                    <p v-else > <b>Categoria:</b> Serie Tv</p>
                 </div>
-                <div v-else>
-                    <p>{{element.name}}</p>
-                    <p>{{element.original_name}}</p>
-                </div>
-                <div v-if="verifyLanguage(element.original_language.toUpperCase())">
-                    <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
-                </div>
-                <p v-else >{{element.original_language.toUpperCase()}}</p>
-                <p class="vote-container d-flex">
-                    <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
-                    <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
-                </p>
-                <p v-if='element.name == undefined' >Film</p>
-                <p v-else >Serie Tv</p>
             </div>
 
-            
+
         </div>
     </div>
 </template>
@@ -41,7 +44,6 @@ import "bootstrap"
 //---------------components-------------------
 import { Bus1 } from '../main'
 import { Bus3 } from '../main'
-
 //--------------------------------------------
 
 
@@ -85,9 +87,26 @@ body{
 .vote-container img{
     width: 20px;
 }
-.film-box{
-    padding: 10px 20px;
+.card-box{
     border: 1px solid black;
     margin: 10px 20px;
+    min-width: 342px;
+    position: relative;
+    background-color: black;
 }
+.card-data{
+    position: absolute;
+    z-index: 1;
+    color: white;
+    top: 40px;
+    left: 20px;
+    display: none;
+}
+.card-box:hover .card-data{
+    display: block;
+}
+.card-box:hover .card-image{
+    opacity: 0.2;
+}
+
 </style>
