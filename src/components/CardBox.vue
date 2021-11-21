@@ -4,7 +4,7 @@
              <div v-for='(element, index) in CardList' :key='index' class="film-box  ">
 
                  <div v-if='element.title != undefined'>
-                     <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="">
+                    <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="">
                     <p>{{element.title}}</p>
                     <p>{{element.original_title}}</p>
                     <div v-if="verifyLanguage(element.original_language.toUpperCase())">
@@ -20,7 +20,7 @@
 
 
                  <div v-else>
-                     <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="">
+                    <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="">
                     <p>{{element.name}}</p>
                     <p>{{element.original_name}}</p>
                     <div v-if="verifyLanguage(element.original_language.toUpperCase())">

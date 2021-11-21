@@ -32,14 +32,12 @@ export default {
         };
     },
     methods:{
-
         ArreyCreator(x){
             for (let i = 0; i < x.length; i++) {
                 const element = x[i];
                 this.List.push(element)
             }
         },
-
         Research(){
 
             Bus2.$emit('send-data', this.InputSearch);

@@ -38,14 +38,12 @@ export default {
             if(this.PageCounter > 1){
                 this.PageCounter --;
                 this.ChangePageRequest();
-
             }
         },
         NextPage(){
             if(this.PageCounter < 10){
                 this.PageCounter ++;
                 this.ChangePageRequest();
-
             }
         },
         ArreyCreator(x){
