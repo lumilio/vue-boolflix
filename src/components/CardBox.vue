@@ -11,8 +11,8 @@
                     </div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
                     <p>
-                        <i v-for="star in Math.round(element.vote_average/2)" :key="star.id" class="fas fa-star"></i>
-                        <i v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" class="far fa-star"></i>
+                        <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
+                        <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
                     </p>
                     <p>Film</p>
                  </div>
@@ -26,8 +26,8 @@
                     </div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
                     <p>
-                        <i v-for="star in Math.round(element.vote_average/2)" :key="star.id" class="fas fa-star"></i>
-                        <i v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" class="far fa-star"></i>
+                        <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
+                        <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
                     </p>
                     <p>Serie Tv</p>
                  </div>
@@ -44,6 +44,7 @@
 //-----------------utilities--------------------
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
+
 //--------------------------------------------
 //---------------components-------------------
 import { Bus1 } from '../main'
