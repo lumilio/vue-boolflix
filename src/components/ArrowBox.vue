@@ -68,7 +68,6 @@ export default {
                 this.ArreyCreator(response_movie.data.results);
                 this.ArreyCreator(response_tv.data.results);
                 Bus3.$emit('send-data', this.ListForPage); 
-                console.log(this.ListForPage); 
             }))
             .catch(function(error){console.log(error);});
         }

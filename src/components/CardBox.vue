@@ -4,7 +4,7 @@
 
 
              <div v-for='(element, index) in CardList' :key='index' class="card-box">
-                <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" alt="" class="card-image">
+                <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" :alt="(element.name == undefined)? element.title : element.name" class="card-image">
                 <div class="card-data">
                     <div v-if='element.name == undefined'>
                         <p><b>Titolo: </b> "{{element.title}}"</p>
@@ -91,8 +91,12 @@ body{
     border: 1px solid black;
     margin: 10px 20px;
     min-width: 342px;
+    min-height: 400px;
     position: relative;
     background-color: black;
+}
+.card-image{
+    color: white;
 }
 .card-data{
     position: absolute;
