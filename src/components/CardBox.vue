@@ -10,7 +10,7 @@
                         <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
                     </div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
-                    <p>
+                    <p class="vote-container d-flex">
                         <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
                         <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
                     </p>
@@ -25,7 +25,7 @@
                         <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
                     </div>
                     <p v-else >{{element.original_language.toUpperCase()}}</p>
-                    <p>
+                    <p class="vote-container d-flex">
                         <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
                         <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
                     </p>
@@ -90,7 +90,7 @@ body{
     padding-bottom: 110px;
 
 }
-i{
+.vote-container img{
     width: 20px;
 }
 .film-box{
