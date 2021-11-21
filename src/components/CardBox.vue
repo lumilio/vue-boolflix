@@ -52,7 +52,6 @@ export default {
     data() {
         return {
             CardList:[],
-
             PageSelected:1,
             InputSelected:'',
         };
@@ -64,9 +63,8 @@ export default {
         }
     },
     created(){
-        Bus1.$on('send-special1', (data) => {this.CardList = data;})
-        Bus3.$on('send-special3', (data) => {this.CardList = data;})
-
+        Bus1.$on('send-data', (data) => {this.CardList = data;})
+        Bus3.$on('send-data', (data) => {this.CardList = data;})
     }
 } 
 </script>

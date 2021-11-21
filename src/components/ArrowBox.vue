@@ -56,18 +56,20 @@ export default {
         },
         ChangePageRequest(){
             this.ListForPage = [];
+
             const axios = require('axios');
             let movie_url = 'https://api.themoviedb.org/3/search/movie?api_key=aa241e36a559a2927e235d5e8f93f3b5' + '&page=' + `${this.PageCounter}` + '&query=' + `${this.InputPage}`;
             let tv_url = 'https://api.themoviedb.org/3/search/tv?api_key=aa241e36a559a2927e235d5e8f93f3b5&query=' + '&page=' + `${this.PageCounter}` + '&query=' + `${this.InputPage}`;
             const request_movie = axios.get(movie_url);
             const request_tv = axios.get(tv_url);
+
             axios
             .all([request_movie, request_tv]).then(axios.spread((...responses) => {
                 const response_movie = responses[0]
                 const response_tv = responses[1]
                 this.ArreyCreator(response_movie.data.results);
                 this.ArreyCreator(response_tv.data.results);
-                Bus3.$emit('send-special3', this.ListForPage); 
+                Bus3.$emit('send-data', this.ListForPage); 
                 console.log(this.ListForPage); 
             }))
             .catch(function(error){console.log(error);});
@@ -75,14 +77,9 @@ export default {
     },
 
     created(){
-        Bus2.$on('send-special2', (data) => {this.InputPage = data;});
-        Bus2.$on('send-special2', (data) => {this.PageCounter = data;});
+        Bus2.$on('send-data', (data) => {this.InputPage = data;});
+        Bus2.$on('send-data', (data) => {this.PageCounter = data;});
     }
-
-
-
-
-
 }
 </script>
 

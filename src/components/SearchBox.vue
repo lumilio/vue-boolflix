@@ -42,9 +42,8 @@ export default {
 
         Research(){
 
-            Bus2.$emit('send-special2', this.InputSearch);
-            Bus2.$emit('send-special2', this.PageActive);
-
+            Bus2.$emit('send-data', this.InputSearch);
+            Bus2.$emit('send-data', this.PageActive);
             this.List = [];
 
             const axios = require('axios');
@@ -59,7 +58,7 @@ export default {
                 const response_tv = responses[1]
                 this.ArreyCreator(response_movie.data.results);
                 this.ArreyCreator(response_tv.data.results);
-                Bus1.$emit('send-special1', this.List);
+                Bus1.$emit('send-data', this.List);
             }))
             .catch(function(error){console.log(error);});
 
