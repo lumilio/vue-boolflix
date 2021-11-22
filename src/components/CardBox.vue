@@ -1,8 +1,16 @@
 <template>
-    <div class="container-fluid d-flex justify-content-center ">
+    <div class="container-fluid d-flex flex-column align-items-center ">
+
+        <div class="container d-flex justify-content-center">
+            <label>Filtra quest apagina selezionando un genere:</label>
+            <select v-model="SelectValue">
+                    <SelectBox v-for='element in AllGenrsList' :key='element.id' :genreId='element.id' :genreName='element.name' />
+            </select>
+        </div>
+
         <div class="container d-flex flex-wrap justify-content-center">
             <!----------- card -->
-            <div v-for='(element, index) in CardList' :key='index' @mouseleave="ShowData = false" class="card-box">
+            <div v-for='(element, index) in CardList' :key='index' @mouseleave="ShowData = false" class="card-box" v-bind:class ="(element.genre_ids.includes(SelectValue))?'':'d-none'">
                 <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" :alt="(element.name == undefined)? element.title : element.name" class="card-image">
                 <div class="card-data">
                     <!----------- nome o titolo -->
@@ -51,21 +59,25 @@ import { Bus1 } from '../main'
 import { Bus3 } from '../main'
 //--------------------------------------------
 //---------------components-------------------
+import SelectBox from './SelectBox.vue';
 //--------------------------------------------
 
 
 
 export default {
     name: '',
-    components: {},
+    components: {
+        SelectBox,
+    },
     data() {
         return {
             CardList:[],
-            AllGenersList:[],
+            AllGenrsList:[],
             ShowActorsList:[],
             ShowGenersList:[],
             ShowData: false,
             InputSelected:'',
+            SelectValue:'',
         };
     },
     methods:{
@@ -80,14 +92,16 @@ export default {
             .get((x.name == undefined)? 'https://api.themoviedb.org/3/movie/' + `${x.id}` + '/credits?api_key=aa241e36a559a2927e235d5e8f93f3b5' : 'https://api.themoviedb.org/3/tv/' + `${x.id}` + '/credits?api_key=aa241e36a559a2927e235d5e8f93f3b5')
             .then(response => {this.ShowActorsList = response.data.cast})
             .catch(e => {console.error(e, 'errore di caricamento');})   
-            for (let i = 0; i < this.AllGenersList.length; i++) {
-                const element = this.AllGenersList[i];
+            for (let i = 0; i < this.AllGenrsList.length; i++) {
+                const element = this.AllGenrsList[i];
                 if(x.genre_ids.includes(element.id)){   
                     this.ShowGenersList.push(element)
                 }
             }
             this.ShowData = true;
+            console.log(this.SelectValue);
         },
+
     },
     created(){
         Bus1.$on('send-data', (data) => {this.CardList = data;}) // --------------- ricevo dati contenuti nell'arrey lista cards
@@ -101,7 +115,7 @@ export default {
             headers: { }
         };
         axios(config)
-        .then(response => {this.AllGenersList = response.data.genres; console.log(this.AllGenersList);})
+        .then(response => {this.AllGenrsList = response.data.genres; console.log(this.AllGenrsList);})
         .catch(function (error) {console.log(error);});
     }
 } 
