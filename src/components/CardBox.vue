@@ -24,7 +24,9 @@
                         <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
                     </div>
                     <div>
-                        <p @click='GetCardCharachters(element)' href="">show more data</p>
+                        <p @click='ShowMoreData(element)' >show more data</p>
+                        <p> <b>Genere : </b> <span v-for='genre in ShowGenersList' :key='genre.id'>{{genre.name}}, </span></p>  
+                        <p> <b>Attori : </b> <span v-for='actor in ShowActorsList.slice(0, 5)' :key='actor.id'>{{actor.name}}, </span></p> 
                     </div>
                     <p v-if='element.name == undefined' ><b>Categoria:</b> Film</p>
                     <p v-else > <b>Categoria:</b> Serie Tv</p>
@@ -70,14 +72,20 @@ export default {
             if(x == 'EN' || x == 'IT' || x == 'ES' || x == 'DE' || x == 'FR'){return true}
             else{return false}
         },
-        GetCardgenres(){
-
-        },
-        GetCardCharachters(x){
+        ShowMoreData(x){
+            this.ShowActorsList = [];
+            this.ShowGenersList = [];
             axios
             .get((x.name == undefined)? 'https://api.themoviedb.org/3/movie/' + `${x.id}` + '/credits?api_key=aa241e36a559a2927e235d5e8f93f3b5' : 'https://api.themoviedb.org/3/tv/' + `${x.id}` + '/credits?api_key=aa241e36a559a2927e235d5e8f93f3b5')
-            .then(response => {this.ShowActorsList = response.data.cast; console.log(this.ShowActorsList);})
+            .then(response => {this.ShowActorsList = response.data.cast;  console.log(this.ShowActorsList);})
             .catch(e => {console.error(e, 'errore di caricamento');})   
+            for (let i = 0; i < this.GenersList.length; i++) {
+                const element = this.GenersList[i];
+                if(x.genre_ids.includes(element.id)){   
+                    this.ShowGenersList.push(element)
+                }
+            }
+            console.log(this.ShowGenersList);
         },
     },
     created(){
