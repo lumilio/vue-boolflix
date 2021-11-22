@@ -14,10 +14,10 @@
 //-----------------utilities--------------------
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
-//--------------------------------------------
-//---------------components-------------------
 import { Bus2 } from '../main'
 import { Bus3 } from '../main'
+//--------------------------------------------
+//---------------components-------------------
 //--------------------------------------------
 
 
@@ -52,7 +52,7 @@ export default {
                 this.ListForPage.push(element)
             }
         },
-        ChangePageRequest(){
+        ChangePageRequest(){   //-------------- componente fuori esercizio per mostrare elementi di altre pagine
             this.ListForPage = [];
 
             const axios = require('axios');

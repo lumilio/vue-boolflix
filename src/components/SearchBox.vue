@@ -11,10 +11,10 @@
 //-----------------utilities--------------------
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
-//--------------------------------------------
-//---------------components-------------------
 import { Bus1 } from '../main'
 import { Bus2 } from '../main'
+//--------------------------------------------
+//---------------components-------------------
 //--------------------------------------------
 
 
@@ -37,7 +37,7 @@ export default {
                 this.List.push(element)
             }
         },
-        Research(){
+        Research(){   // --------------- richiesta per per cercare l'input 
 
             Bus2.$emit('send-data', this.InputSearch);
             Bus2.$emit('send-data-2', this.PageActive);
@@ -55,7 +55,7 @@ export default {
                 const response_tv = responses[1]
                 this.ArreyCreator(response_movie.data.results);
                 this.ArreyCreator(response_tv.data.results);
-                Bus1.$emit('send-data', this.List);
+                Bus1.$emit('send-data', this.List); // --------------- copio l'arrey della lista cards in un'altro componente
             }))
             .catch(function(error){console.log(error);});
 
