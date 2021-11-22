@@ -4,13 +4,14 @@
         <div class="container d-flex justify-content-center">
             <label>Filtra quest apagina selezionando un genere:</label>
             <select v-model="SelectValue">
+                    <option value="All" select>All</option>
                     <SelectBox v-for='element in AllGenrsList' :key='element.id' :genreId='element.id' :genreName='element.name' />
             </select>
         </div>
 
         <div class="container d-flex flex-wrap justify-content-center">
             <!----------- card -->
-            <div v-for='(element, index) in CardList' :key='index' @mouseleave="ShowData = false" class="card-box" v-bind:class ="(element.genre_ids.includes(SelectValue))?'':'d-none'">
+            <div v-for='(element, index) in CardList' :key='index' @mouseleave="ShowData = false" class="card-box" v-bind:class ="(element.genre_ids.includes(SelectValue) || SelectValue == 'All' )?'':'d-none'">
                 <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" :alt="(element.name == undefined)? element.title : element.name" class="card-image">
                 <div class="card-data">
                     <!----------- nome o titolo -->
