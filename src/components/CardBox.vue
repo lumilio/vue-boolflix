@@ -1,9 +1,7 @@
 <template>
     <div class="container-fluid d-flex justify-content-center ">
         <div class="container d-flex flex-wrap justify-content-center">
-
-
-            <div v-for='(element, index) in CardList' :key='index' class="card-box">
+            <div v-for='(element, index) in CardList' :key='index' @mouseleave="ShowData = false" class="card-box">
                 <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" :alt="(element.name == undefined)? element.title : element.name" class="card-image">
                 <div class="card-data">
                     <template v-if='element.name == undefined'>
@@ -24,16 +22,15 @@
                         <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
                     </div>
                     <div>
-                        <p @click='ShowMoreData(element)' >show more data</p>
-                        <p> <b>Genere : </b> <span v-for='genre in ShowGenersList' :key='genre.id'>{{genre.name}}, </span></p>  
-                        <p> <b>Attori : </b> <span v-for='actor in ShowActorsList.slice(0, 5)' :key='actor.id'>{{actor.name}}, </span></p> 
+                        <p @click='ShowMoreData(element)' class="more-info">show extra data</p>
+                        <p v-show="ShowData"> <b>Genere : </b> <span v-for='genre in ShowGenersList' :key='genre.id'>{{genre.name}}, </span></p>  
+                        <p v-show="ShowData"> <b>Attori : </b> <span v-for='actor in ShowActorsList.slice(0, 5)' :key='actor.id'>{{actor.name}}, </span></p> 
+                        <p v-show="ShowData" @click='ShowData = false' class="more-info"> hide extra data</p>
                     </div>
                     <p v-if='element.name == undefined' ><b>Categoria:</b> Film</p>
                     <p v-else > <b>Categoria:</b> Serie Tv</p>
                 </div>
             </div>
-
-
         </div>
     </div>
 </template>
@@ -60,10 +57,10 @@ export default {
     data() {
         return {
             CardList:[],
+            AllGenersList:[],
             ShowActorsList:[],
             ShowGenersList:[],
-            GenersList:[],
-            PageSelected:1,
+            ShowData: false,
             InputSelected:'',
         };
     },
@@ -77,15 +74,15 @@ export default {
             this.ShowGenersList = [];
             axios
             .get((x.name == undefined)? 'https://api.themoviedb.org/3/movie/' + `${x.id}` + '/credits?api_key=aa241e36a559a2927e235d5e8f93f3b5' : 'https://api.themoviedb.org/3/tv/' + `${x.id}` + '/credits?api_key=aa241e36a559a2927e235d5e8f93f3b5')
-            .then(response => {this.ShowActorsList = response.data.cast;  console.log(this.ShowActorsList);})
+            .then(response => {this.ShowActorsList = response.data.cast})
             .catch(e => {console.error(e, 'errore di caricamento');})   
-            for (let i = 0; i < this.GenersList.length; i++) {
-                const element = this.GenersList[i];
+            for (let i = 0; i < this.AllGenersList.length; i++) {
+                const element = this.AllGenersList[i];
                 if(x.genre_ids.includes(element.id)){   
                     this.ShowGenersList.push(element)
                 }
             }
-            console.log(this.ShowGenersList);
+            this.ShowData = true;
         },
     },
     created(){
@@ -100,7 +97,7 @@ export default {
             headers: { }
         };
         axios(config)
-        .then(response => {this.GenersList = response.data.genres; console.log(this.GenersList);})
+        .then(response => {this.AllGenersList = response.data.genres; console.log(this.AllGenersList);})
         .catch(function (error) {console.log(error);});
     }
 } 
@@ -146,5 +143,17 @@ body{
 .card-box:hover .card-image{
     opacity: 0.2;
 }
+p{
+    margin:  10px 0;
+}
 
+.more-info{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.more-info:hover{
+    color: rgb(183, 0, 255);
+    cursor: pointer;
+}
 </style>
