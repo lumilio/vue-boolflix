@@ -4,7 +4,7 @@
         <div class="container d-flex justify-content-center">
             <label>Filtra quest apagina selezionando un genere:</label>
             <select v-model="SelectValue">
-                    <option value="All" select>All</option>
+                    <option value="All" selected >All</option>
                     <SelectBox v-for='element in AllGenrsList' :key='element.id' :genreId='element.id' :genreName='element.name' />
             </select>
         </div>
@@ -78,7 +78,7 @@ export default {
             ShowGenersList:[],
             ShowData: false,
             InputSelected:'',
-            SelectValue:'',
+            SelectValue:'All',
         };
     },
     methods:{
