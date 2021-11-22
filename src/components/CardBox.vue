@@ -3,17 +3,17 @@
         <div class="container d-flex flex-wrap justify-content-center">
 
 
-             <div v-for='(element, index) in CardList' :key='index' class="card-box">
+            <div v-for='(element, index) in CardList' :key='index' class="card-box">
                 <img :src="'https://image.tmdb.org/t/p/w342/' + element.poster_path" :alt="(element.name == undefined)? element.title : element.name" class="card-image">
                 <div class="card-data">
-                    <div v-if='element.name == undefined'>
+                    <template v-if='element.name == undefined'>
                         <p><b>Titolo: </b> "{{element.title}}"</p>
                         <p><b>Titolo originale: </b>  "{{element.original_title}}"</p>
-                    </div>
-                    <div v-else>
+                    </template>
+                    <template v-else>
                         <p><b>Titolo: </b> "{{element.name}}"</p>
                         <p><b>Titolo originale: </b>  "{{element.original_name}}"</p>
-                    </div>
+                    </template>
                     <div v-if="verifyLanguage(element.original_language.toUpperCase())" class="my-3">
                         <img :src= "require(`../assets/img/${element.original_language.toUpperCase()}.jpeg`)" alt="">
                     </div>
@@ -22,6 +22,9 @@
                         <p><b>Voto:&nbsp; </b></p>
                         <img v-for="star in Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-solid.svg" alt="">
                         <img v-for="star in 5 - Math.round(element.vote_average/2)" :key="star.id" src="../assets/img/star-regular.svg" alt="">
+                    </div>
+                    <div>
+                        <p @click='GetCardCharachters(element)' href="">show more data</p>
                     </div>
                     <p v-if='element.name == undefined' ><b>Categoria:</b> Film</p>
                     <p v-else > <b>Categoria:</b> Serie Tv</p>
@@ -39,6 +42,7 @@
 //-----------------utilities--------------------
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
+import axios from 'axios';
 
 //--------------------------------------------
 //---------------components-------------------
@@ -54,6 +58,8 @@ export default {
     data() {
         return {
             CardList:[],
+            ShowActorsList:[],
+            ShowGenersList:[],
             GenersList:[],
             PageSelected:1,
             InputSelected:'',
@@ -64,7 +70,15 @@ export default {
             if(x == 'EN' || x == 'IT' || x == 'ES' || x == 'DE' || x == 'FR'){return true}
             else{return false}
         },
+        GetCardgenres(){
 
+        },
+        GetCardCharachters(x){
+            axios
+            .get((x.name == undefined)? 'https://api.themoviedb.org/3/movie/' + `${x.id}` + '/credits?api_key=aa241e36a559a2927e235d5e8f93f3b5' : 'https://api.themoviedb.org/3/tv/' + `${x.id}` + '/credits?api_key=aa241e36a559a2927e235d5e8f93f3b5')
+            .then(response => {this.ShowActorsList = response.data.cast; console.log(this.ShowActorsList);})
+            .catch(e => {console.error(e, 'errore di caricamento');})   
+        },
     },
     created(){
         Bus1.$on('send-data', (data) => {this.CardList = data;})
