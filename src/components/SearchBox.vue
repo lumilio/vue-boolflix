@@ -9,8 +9,6 @@
 
 <script>
 //-----------------utilities--------------------
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap"
 import { Bus1 } from '../main'
 import { Bus2 } from '../main'
 //--------------------------------------------

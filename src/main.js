@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 
+import 'bootstrap';
 
 
 export const Bus1 = new Vue(); /* data from SearchBox to CardBox */
